@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Our Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff9ff3, #59c2ff, #ffef9f);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .gallery-container {
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5%;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(8px);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .gallery-title {
+            color: #ff69b4;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: color 0.5s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .change-colors-button, .love-story-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.5s ease;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .change-colors-button {
+            background-color: #ffb347;
+            color: white;
+        }
+
+        .love-story-button {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .change-colors-button:hover, .love-story-button:hover {
+            transform: scale(1.03);
+        }
+
+        .falling-emoji {
+            position: absolute;
+            font-size: 1.2em;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+        @media (max-width: 480px) {
+            .gallery-title {
+                font-size: 1.8em;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-card">
+            <h1 class="gallery-title">Welcome to Our Gallery 💞✨</h1>
+            
+            <img src="giff.gif" alt="Description of the GIF" width="120" height="100">
+            <div class="button-container">
+                <button class="change-colors-button" onclick="changeColors()">Change Colors 🎨</button>
+                <button class="love-story-button" onclick="openLoveStory()">Enter To View 💖</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeColors() {
+            const body = document.body;
+            const title = document.querySelector('.gallery-title');
+            const button1 = document.querySelector('.change-colors-button');
+            const button2 = document.querySelector('.love-story-button');
+
+            const randomColor1 = getRandomColor();
+            const randomColor2 = getRandomColor();
+            const randomColor3 = getRandomColor();
+            const randomColor4 = getRandomColor();
+            const randomColor5 = getRandomColor();
+
+            body.style.background = `linear-gradient(135deg, ${randomColor1}, ${randomColor2}, ${randomColor3})`;
+            title.style.color = randomColor4;
+            button1.style.backgroundColor = randomColor5;
+            button2.style.backgroundColor = getRandomColor();
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createFallingEmojis() {
+            const numEmojis = 50;
+            const emojis = ["💖", "🫶", "😻"];
+            for (let i = 0; i < numEmojis; i++) {
+                const emoji = document.createElement("div");
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.classList.add("falling-emoji");
+                emoji.style.left = `${Math.random() * 100}vw`;
+                emoji.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                emoji.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(emoji);
+            }
+        }
+
+        function openLoveStory() {
+            window.location.href = "3d.html";
+        }
+
+        createFallingEmojis();
+    </script>
+</body>
+</html>
